@@ -1,87 +1,89 @@
-# 🔐 JWT Authentication System using Flask
+# JWT Authentication System — Flask
 
-A secure, production-ready token-based authentication backend built with Flask and JWT. This system implements industry-standard security practices for user registration, login validation, and protected API routes.
+> Secure, production-ready token-based authentication backend built with Flask and JWT.
 
-![JWT Authentication](https://img.shields.io/badge/JWT-Authentication-000000?style=for-the-badge&logo=JSON%20web%20tokens)
-![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
-![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=for-the-badge)
+![JWT](https://img.shields.io/badge/JWT-Authentication-000000?style=flat-square&logo=JSON%20web%20tokens)
+![Flask](https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-07405E?style=flat-square&logo=sqlite&logoColor=white)
+![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)
 
-## 🌟 Features
+---
+<img width="1536" height="1024" alt="Image" src="https://github.com/user-attachments/assets/746220bf-1445-42c8-8d6a-65975048b7b5" />
 
-- **🔒 Secure User Registration** - Password hashing with bcrypt
-- **🎫 Token-Based Authentication** - JWT token generation and validation
-- **🛡️ Protected API Routes** - Bearer token authorization
-- **👤 User Login System** - Credential validation and session management
-- **💾 Database Persistence** - SQLite with SQLAlchemy ORM
-- **🚀 RESTful API** - Clean and standardized endpoints
+## Overview
+A minimal yet robust authentication system implementing industry-standard security practices — bcrypt password hashing, stateless JWT sessions, and protected API routes via Bearer token authorization.
 
-## 🛠️ Tech Stack
+---
 
-### Backend
-- **Python** - Core programming language
-- **Flask** - Lightweight REST API framework
+## Features
 
-### Authentication & Security
-- **JWT (JSON Web Token)** - Stateless token-based authentication
-- **Flask-JWT / PyJWT** - Token encoding and decoding
-- **bcrypt / Flask-Bcrypt** - Password hashing algorithm
+- Secure user registration with bcrypt password hashing
+- JWT token generation, signing, and validation
+- Protected API routes via Bearer token authorization
+- Credential validation and session management
+- SQLite persistence via SQLAlchemy ORM
+- Clean RESTful API design
 
-### Database
-- **SQLite** - Embedded database for user storage
-- **SQLAlchemy** - Object-Relational Mapping (ORM)
+---
 
-## 📋 API Endpoints
+## Tech Stack
 
-| Method | Endpoint | Description | Authentication |
-|--------|----------|-------------|----------------|
-| POST | `/register` | Create new user account | ❌ Public |
-| POST | `/login` | Authenticate and get JWT token | ❌ Public |
-| GET | `/profile` | Get user profile information | ✅ Required |
+| Layer | Technology |
+|---|---|
+| Language | Python 3.8+ |
+| Framework | Flask |
+| Auth | PyJWT, Flask-Bcrypt |
+| Database | SQLite + SQLAlchemy ORM |
 
-## 🚀 Getting Started
+---
+
+## API Endpoints
+
+| Method | Endpoint | Description | Auth Required |
+|---|---|---|---|
+| POST | `/register` | Create new user account | No |
+| POST | `/login` | Authenticate and receive JWT | No |
+| GET | `/profile` | Retrieve user profile | Yes |
+
+---
+
+## Getting Started
 
 ### Prerequisites
 
 - Python 3.8+
-- pip package manager
+- pip
 
 ### Installation
 
-1. **Clone the repository**
 ```bash
+# Clone the repository
 git clone https://github.com/ares-coding/jwt-authentication-flask.git
 cd jwt-authentication-flask
-```
 
-2. **Create virtual environment**
-```bash
+# Create and activate virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
+source venv/bin/activate        # Windows: venv\Scripts\activate
 
-3. **Install dependencies**
-```bash
+# Install dependencies
 pip install -r requirements.txt
-```
 
-4. **Set environment variables**
-```bash
+# Set environment variables
 export SECRET_KEY='your-secret-key-here'
 export DATABASE_URL='sqlite:///users.db'
-```
 
-5. **Run the application**
-```bash
+# Run the application
 python app.py
 ```
 
-The API will be available at `http://localhost:5000`
+Server runs at `http://localhost:5000`
 
-## 📝 Usage Examples
+---
 
-### 1. Register a New User
+## Usage
+
+### Register
 
 ```bash
 curl -X POST http://localhost:5000/register \
@@ -93,7 +95,6 @@ curl -X POST http://localhost:5000/register \
   }'
 ```
 
-**Response:**
 ```json
 {
   "message": "User registered successfully",
@@ -101,7 +102,7 @@ curl -X POST http://localhost:5000/register \
 }
 ```
 
-### 2. Login and Get JWT Token
+### Login
 
 ```bash
 curl -X POST http://localhost:5000/login \
@@ -112,7 +113,6 @@ curl -X POST http://localhost:5000/login \
   }'
 ```
 
-**Response:**
 ```json
 {
   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
@@ -121,14 +121,13 @@ curl -X POST http://localhost:5000/login \
 }
 ```
 
-### 3. Access Protected Route
+### Access Protected Route
 
 ```bash
 curl -X GET http://localhost:5000/profile \
   -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 ```
 
-**Response:**
 ```json
 {
   "user_id": 1,
@@ -138,36 +137,34 @@ curl -X GET http://localhost:5000/profile \
 }
 ```
 
-## 🔒 Security Features
+---
 
-- **Password Hashing**: All passwords are hashed using bcrypt with salt rounds
-- **JWT Tokens**: Stateless authentication with configurable expiration
-- **Bearer Token Authorization**: Industry-standard HTTP authentication
-- **SQL Injection Protection**: SQLAlchemy ORM prevents SQL injection attacks
-- **Input Validation**: Server-side validation for all user inputs
+## Security
 
-## 📂 Project Structure
+- Passwords hashed via bcrypt with salt rounds
+- Stateless JWT with configurable expiration
+- Bearer token authorization (RFC 6750)
+- SQL injection prevention via SQLAlchemy ORM
+- Server-side input validation on all endpoints
+
+---
+
+## Project Structure
 
 ```
 jwt-authentication-flask/
-├── app.py                 # Main application file
-├── models.py              # Database models
-├── auth.py                # Authentication logic
-├── config.py              # Configuration settings
-├── requirements.txt       # Python dependencies
-├── README.md             # Project documentation
-└── users.db              # SQLite database (generated)
+├── app.py              # Application entry point
+├── models.py           # Database models
+├── auth.py             # Authentication logic
+├── config.py           # Configuration settings
+├── requirements.txt    # Dependencies
+├── README.md
+└── users.db            # SQLite database (auto-generated)
 ```
 
-## 🧪 Testing
+---
 
-Run the test suite:
-
-```bash
-python -m pytest tests/
-```
-
-## 📦 Dependencies
+## Dependencies
 
 ```
 Flask==2.3.0
@@ -177,31 +174,30 @@ PyJWT==2.8.0
 python-dotenv==1.0.0
 ```
 
-## 🤝 Contributing
+---
 
-Contributions are welcome! Please follow these steps:
+## Testing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
-
-## 👨‍💻 Author
-
-**Au.dev**
-- GitHub: [@ares-coding](https://github.com/ares-coding)
-
-## Acknowledgments
-
-- Flask documentation and community
-- JWT.io for JWT standards
-- bcrypt library maintainers
+```bash
+python -m pytest tests/
+```
 
 ---
 
-⭐ **Star this repository if you find it helpful!**
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch — `git checkout -b feature/your-feature`
+3. Commit your changes — `git commit -m 'Add your feature'`
+4. Push the branch — `git push origin feature/your-feature`
+5. Open a Pull Request
+
+---
+
+## License
+
+Licensed under the [Apache License 2.0](LICENSE).
+
+---
+
+**Author:** Au.dev — [@ares-coding](https://github.com/ares-coding)
